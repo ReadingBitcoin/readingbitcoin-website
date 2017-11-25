@@ -1,0 +1,83 @@
+{% extends "article.html" %}
+{% block article %}
+<h1>{{article_data['title']}}</h1>
+<h5>by {{article_data['author']}}</h5>
+<p>
+    One of Bitcoin's strengths - the most important in my opinion even - is the
+    low degree of trust you need in others.
+    If you use a full node for your incoming transactions, you know that there
+    was no cheating anytime in the history of your coins:
+</p>
+<ul>
+    <li>
+        Nobody ever created money out of nothing (except for mimers, and only
+        according to a well-defined schedule).
+    </li>
+    <li>
+        Nobody ever spent coins without holder their private key.
+    </li>
+    <li>
+        Nobody spent the same coins twice (but see further).
+    </li>
+    <li>
+        Nobody violated any of the other tricky rules that are needed to keep
+        the system in check (difficulty, proof of work, DoS protection, ...).
+    </li>
+</ul>
+
+<p>
+    ... with one exception: because there is a need to pick a winner in presence
+    of multiple competing valid versions of the ledger, (a majority of) miners
+    have the authority to pick the version of the block chain that wins. This
+    means their power is limited to choosing the order in which otherwise valid
+    transactions occur, up to and including the right to delay them
+    indefinitely. But they cannot make invalid transaction look valid to a full
+    node.
+</p>
+
+<p>
+    If you are not running a full node, the amount of trust you're placing in
+    others increases.
+</p>
+
+<ul>
+    <li>
+        SPV nodes (such as some mobile clients, and Multibit) place a blind
+        trust in the majority of miners, without checking validity of the
+        blockchain they produce. It still requires a majority of miners to
+        mislead an SPV node, but they can make it believe anything (including
+        "You received 10000000 BTC!"). The reason why this does not happen is
+        because full nodes would not accept such blocks, and assuming a large
+        portion of the ecosystem does rely on full nodes, miners who do this
+        would not see their blocks accepted by the larger economy, resulting in
+        them wasting money.
+    </li>
+    <li>
+        Centralized services (most webwallets) make the user trust whatever the
+        site says. They can claim anything.
+    </li>
+</ul>
+
+<p>
+    So I hope you now see the importance of full nodes in this model. If you run
+    a full node somewhere on the network, and nobody looks at the transactions
+    it validates, it is indeed contributing to the network, but it is not
+    helping with the reduction of trust.
+</p>
+
+<p>
+    Look at it another way: if only a few large players in the Bitcoin ecosystem
+    were running full nodes, it only requires a malicious intent, or an
+    attack/threat against them, to change the system's rules, as nobody else is
+    validating.
+</p>
+<p>
+    Doing transactions in the Bitcoin ecosystem helps the Bitcoin currency.
+    Running a full node helps the network. Using a full node helps you and the
+    ecosystem reduce the need for trust.
+</p>
+<p>
+    <a href="https://twitter.com/pwuille?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @pwuille</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+<a href="{{article_data['source']}}">Source</a>
+{% endblock %}

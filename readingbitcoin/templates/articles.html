@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% for article in articles_data %}
+
+<blockquote class="pull-quote">
+        <img class="rounded-circle" src="{{ url_for('static', filename='pwuille.png') }}">
+    <p>
+        <a href="{{ url_for('article', file_name=article['file_name']) }}">
+        "{{article['preview']}}"
+        </a>
+    </p>
+    <cite>
+        <a href="{{ url_for('article', file_name=article['file_name']) }}">
+            <strong>{{article['title']}}</strong></a> by {{article['author']}}
+    </cite>
+</blockquote>
+
+{% endfor %}
+{% endblock %}
