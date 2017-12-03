@@ -20,8 +20,8 @@ def articles():
     return render_template('articles.html', articles_data=articles_data)
 
 
-@app.route('/articles/<file_name>/')
-def article(file_name):
+@app.route('/articles/<year>/<month>/<file_name>/<language>/')
+def article(year, month, file_name, language=None):
     article_data = [a for a in articles_data if a['file_name'] == file_name][0]
     return render_template(
         'articles/{file_name}.html'.format(file_name=file_name),
