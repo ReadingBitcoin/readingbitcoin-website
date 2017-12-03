@@ -1,6 +1,9 @@
 articles_data = [
     {
         'id': 0,
+        'month': 11,
+        'year': 2017,
+        'image_name': 'pwuille.png',
         'file_name': 'why-run-a-full-node',
         'title': 'Why Run a Full Node',
         'author': 'Pieter Wuille',

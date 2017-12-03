@@ -4,14 +4,18 @@
 {% for article in articles_data %}
 
 <blockquote class="pull-quote">
-        <img class="rounded-circle" src="{{ url_for('static', filename='pwuille.png') }}">
+        <img class="rounded-circle" src="{{ url_for('static', filename=article['image_name']) }}">
     <p>
-        <a href="{{ url_for('article', file_name=article['file_name']) }}">
+        <a href="{{ url_for('article', file_name=article['file_name'],
+                                       month=article['month'],
+                                       year=article['year']) }}">
         "{{article['preview']}}"
         </a>
     </p>
     <cite>
-        <a href="{{ url_for('article', file_name=article['file_name']) }}">
+        <a href="{{ url_for('article', file_name=article['file_name'],
+                                       month=article['month'],
+                                       year=article['year']) }}">
             <strong>{{article['title']}}</strong></a> by {{article['author']}}
     </cite>
 </blockquote>

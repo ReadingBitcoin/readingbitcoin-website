@@ -49,7 +49,18 @@
         }
     </style>
 
-    <script type="text/javascript">window.liveSettings={api_key:"357c2fb030dd459a8780beaf18f40c38"}</script>
+    {% if not language_code %}
+    <script type="text/javascript">
+        window.liveSettings={api_key:"357c2fb030dd459a8780beaf18f40c38"}
+    </script>
+    {% else %}
+    <script type="text/javascript">
+        window.liveSettings={
+            api_key:"357c2fb030dd459a8780beaf18f40c38",
+            detectlang: function() { return "{{language_code}}"; }
+        }
+    </script>
+    {% endif %}
     <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
 
     <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
@@ -64,7 +75,7 @@
 
 <div class="container pt-4">
     <nav class="navbar navbar-light navbar-expand-sm text-uppercase app-navbar mb-5">
-        <a class="navbar-brand mr-auto" href="../../">
+        <a class="navbar-brand mr-auto" href="{{ url_for('index') }}">
             <span>Reading Bitcoin</span>
         </a>
         <button
