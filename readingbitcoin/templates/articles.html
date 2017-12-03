@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-
-{% for article in articles_data %}
-
+<hr>
+{% for article in articles_data|sort(attribute='id', reverse=True) %}
+<br><br>
 <blockquote class="pull-quote">
         <img class="rounded-circle" src="{{ url_for('static', filename=article['image_name']) }}">
     <p>
@@ -19,6 +19,6 @@
             <strong>{{article['title']}}</strong></a> by {{article['author']}}
     </cite>
 </blockquote>
-
+<hr>
 {% endfor %}
 {% endblock %}

@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+img.center {
+    display: block;
+    margin: 0 auto;
+}
 
 /* navbar */
 .app-navbar {
