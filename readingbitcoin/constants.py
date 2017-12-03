@@ -1,5 +1,5 @@
 language_map = {
-    'ko': 'ko',
+    'ko': 'ko_KR',
     'ja': 'ja_JP',
     'zh': 'zh_CN'
 }
