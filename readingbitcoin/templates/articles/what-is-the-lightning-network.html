@@ -1,0 +1,190 @@
+{% extends "article.html" %}
+{% block article %}
+    <h1>{{ article_data['title'] }}</h1>
+    <h5>by {{ article_data['author'] }}</h5>
+
+    <p>
+        Imagine if every computer had to store every e-mail, to receive any.
+        That's how blockchains work. Lightning Network allows computers to make
+        blockchain transactions, only storing the data they care about—their own
+        money.
+    </p>
+
+    <p>
+        Lightning Network is a protocol for scaling and speeding up blockchains.
+        It was designed to solve some of the technical limitations of the
+        Bitcoin blockchain, but could be implemented on top of any blockchain.
+    </p>
+
+    <p>
+        Scalability was the first major motivator for Lightning, as Bitcoin’s
+        distributed nature greatly limits the transaction rate of the network.
+        While Visa can process tens of thousands of transactions per second,
+        Bitcoin's network is limited to less than 10 per second. Another
+        motivator for Lightning’s development is that the Bitcoin blockchain’s
+        “block confirmation time” is approximately 10 minutes long. That means
+        it takes
+        <a href="http://coincenter.org/entry/how-long-does-it-take-for-a-bitcoin-transaction-to-be-confirmed">
+            10 minutes for a bitcoin transaction to confirm
+        </a>. Further,
+        transaction fees on the Bitcoin blockchain can run between 5 and 10
+        cents per transaction, rendering micropayments infeasible. Lightning
+        Network, by contrast, can enable near-instant transactions, at a rate of
+        thousands to millions per second, with fees of a fraction of a cent (or
+        even free).
+    </p>
+
+    <p>
+        Lightning Network is based on a technology called
+        <a href="https://coincenter.org/entry/what-are-micropayments-and-how-does-bitcoin-enable-them">
+        payment channels
+        </a>. A
+        two-party payment channel is created when both parties create a
+        2-out-of-2
+        <a href="http://coincenter.org/entry/what-is-multi-sig-and-what-can-it-do">
+        multi signature
+        </a> transaction on the blockchain, with at least
+        one party committing funds to the 2-of-2 ledger entry. Each person has
+        one private key, and transactions spending from the ledger entry can now
+        be made only if both keys sign. This initial transaction to open a
+        channel takes 10 minutes (or whatever the normal block time is), but
+        afterward the participants can transact with each other instantly using
+        the funds allocated in the the channel. These instantaneous transactions
+        are made by passing signed transactions back and forth, spending from
+        the 2-of-2 ledger entry.
+    </p>
+
+    <p>
+        Each transaction would be valid if broadcast to the network and included
+        in the blockchain by the network’s miners, but in a payment channel,
+        those signed transactions are not broadcast until the participants want
+        the channel to stop operating. Signed but unbroadcast transactions are
+        exchanged using direct, peer-to-peer communication, and held like
+        redeemable receipts by the participants.
+    </p>
+
+    <p>
+        To use Lightning, two participants, Alice and Bob, create an initial
+        transaction on the blockchain for $20, where each party has $10 of the
+        value.
+    </p>
+
+    <img class="center"
+         src="{{ url_for('static', filename='lightning1.png') }}">
+
+    <p>
+        This initial allocation can then be updated, such that Alice then has $5
+        of the total $20 value, and Bob has $15, and so on. When the
+        participants have finished transacting with each other, the most
+        recently exchanged transaction signature is broadcast to the network,
+        finalizing the movement of the funds in the channel—some to one party
+        and (if any remain) some back to the other.
+    </p>
+    <p>
+        Lightning takes the technology behind payment channels and creates a
+        network of these channels, using “smart contracts” to ensure that the
+        network can function in a decentralized capacity without counterparty
+        risk. As an example, Alice may open a channel with Bob, who in turn has
+        a channel with Carol, who has one open with Dave. If Alice wants to
+        transact with Dave, she can send funds via Bob and Carol, and Dave will
+        ultimately receive them. But, because of multi signature and smart
+        contracts inherent in the design of Lightning, Alice doesn’t need to
+        trust Bob and Carol as an intermediaries—the protocol uses cryptography
+        to ensure that the funds will either reach Dave through Bob and Carol or
+        else be automatically refunded to Alice.
+    </p>
+
+    <img class="center"
+         src="{{ url_for('static', filename='lightning2.png') }}">
+
+    <p>
+        Bob and Carol function as “nodes” on the network. Nodes on the Lightning
+        Network are in some ways analogous to
+        <a href="http://coincenter.org/entry/what-is-bitcoin-mining-and-why-is-it-necessary">
+            miners on the Bitcoin network
+        </a>.
+        They function as the servers that process the transactions on the
+        network in a decentralized manner. Like miners, they do not have control
+        over the funds they help move. Bob cannot steal Alice’s funds, as he
+        will only receive the sender’s incoming payment if he has already sent
+        the outgoing payment to the recipient. Thus, receiving a payment is
+        dependent on having already forwarded it. Lightning payments are
+        conditional upon disclosure of a cryptographic secret, and knowledge of
+        that secret allows for redemption from prior nodes (when Dave redeems
+        from Carol, Carol can now redeem from Bob).
+    </p>
+    <p>
+        What happens, though, if Bob goes offline? Do the funds stay forever in
+        a 2-of-2 payment channel? To deal with unreliable nodes, Lightning has
+        built-in smart contract mechanisms such that users can unilaterally
+        close their channels. It uses a “hashed timelock contract” to ensure
+        that if Bob disappears, Alice can always get her money back. There is a
+        time value set on this contract, typically in hours or days, so that
+        Alice can get repaid even if Bob’s server is down.
+    </p>
+    <p>
+        Similarly, what happens if Alice sends funds from her multi signature
+        address to Dave on the Lightning Network but then tries to renege? She
+        could do this by broadcasting an older transaction to the blockchain,
+        thereby attempting to close out the channel in the state it was before
+        she sent a transaction to Dave. While Lightning software will delete
+        these old transaction states, Alice could have changed the software to
+        save it. If Alice tries to claim she still has her old balance, Dave’s
+        software (or other designated servers) will monitor the blockchain for
+        such a transaction, and when it catches Alice’s broadcasted transaction,
+        she will lose all of her funds to Dave as a penalty. As a result, there
+        is a disincentive for anyone to try to broadcast an old, invalid state.
+    </p>
+    <p>
+        What if Alice and Bob are both online and willing to close their
+        channel? If both parties cooperatively close a payment channel, the
+        funds can be cleared to the blockchain in 10 minutes, the amount of time
+        that it takes for a bitcoin transaction to confirm. Alice and Bob may
+        have transacted thousands of times on Lightning Network in the interim.
+    </p>
+    <p>
+        Lightning Network ultimately relies on the underlying blockchain, be it
+        Bitcoin’s or otherwise, for its security. In the case of Bitcoin, it
+        uses the underlying proof-of-work algorithm that secures the entire
+        network to secure it as well. The blockchain is the ultimate arbiter, or
+        in effect an automated judge. With Lightning, you always know how the
+        judge will decide, because it is pre-written into the transactions used
+        to create the payment channels that make up the Lightning Network. This
+        is a judge that cannot be cajoled or bribed. In effect, Lightning allows
+        for a “local consensus” state which is ultimately enforced by the
+        “global consensus” (the blockchain). This local consensus state does not
+        have custodial trust similar to traditional models, as any participant
+        can unilaterally close out and redeem their funds without the
+        cooperation other participants. Ultimately, Lightning uses the
+        underlying blockchain as a means to batch settle transactions that have
+        occurred off-chain without counterparty trust.
+    </p>
+    <p>
+        Lightning Network can work on the Bitcoin blockchain, on other
+        blockchains, or it can be used to instantly transfer different assets
+        between blockchains using “cross-chain atomic swaps.” The consensus
+        rules for each blockchain can be different, allowing for secure crossing
+        of asset classes without custodial clearing agencies.
+    </p>
+    <p>
+        With Lightning, small transactions or payments can flow through the
+        network similar to how packets flow through the Internet. It has the
+        potential to create new use cases that were not previously possible,
+        such as machine-to-machine payments, content micropayments, and instant
+        asset swaps.
+    </p>
+    <p style="font-style: italic">
+        Elizabeth Stark is a Coin Center Fellow, Co-founder of Lightning, and
+        former lecturer at Yale Law School.
+    </p>
+    <p style="font-style: italic">
+        Thanks to Tadge Dryja and Joseph Poon for their comments and feedback.
+    </p>
+    <p>
+        <a href="https://twitter.com/starkness" class="twitter-follow-button"
+           data-show-count="false">
+            Follow @starkness
+        </a>
+    </p>
+    <a href="{{ article_data['source'] }}">Source</a>
+{% endblock %}
