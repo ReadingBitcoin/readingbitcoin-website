@@ -16,7 +16,7 @@
         <a href="{{ url_for('article', file_name=article['file_name'],
                                        month=article['month'],
                                        year=article['year']) }}">
-            <strong>{{article['title']}}</strong></a> by {{article['author']}}
+            <strong>{{article['title']}}</strong></a> by {{article['author']}} on {{article['year']}}/{{article['month']}}/{{article['day']}}
     </cite>
 </blockquote>
 <hr>

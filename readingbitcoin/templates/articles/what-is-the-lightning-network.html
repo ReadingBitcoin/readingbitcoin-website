@@ -1,8 +1,8 @@
 {% extends "article.html" %}
 {% block article %}
-    <h1>{{ article_data['title'] }}</h1>
-    <h5>by {{ article_data['author'] }}</h5>
-
+<h1>{{article_data['title']}}</h1>
+<h2>by {{article_data['author']}}</h2>
+<h5> {{article_data['year']}}/{{article_data['month']}}/{{article_data['day']}} - <a href="{{article_data['source']}}">{{article_data['source_name']}}</a></h5>
     <p>
         Imagine if every computer had to store every e-mail, to receive any.
         That's how blockchains work. Lightning Network allows computers to make
