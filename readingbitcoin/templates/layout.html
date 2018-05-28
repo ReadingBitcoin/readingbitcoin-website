@@ -102,6 +102,22 @@
         </div><!--/.nav-collapse -->
     </nav>
 </div>
+
+<div class="container pt-4" id=cookies_and_js_disabled_message>
+<div class="alert alert-danger text-center" role="alert" id=js_disabled_message>
+    Reading Bitcoin's translations require <a href="https://www.enable-javascript.com/">JavaScript to be enabled</a>
+</div>
+    <div class="alert alert-danger text-center" role="alert" id=cookies_disabled_message>
+        Reading Bitcoin's translations requires <a href="http://www.whatarecookies.com/enable.asp">cookies to be enabled</a>
+    </div>
+</div>
+<script>
+    document.getElementById('js_disabled_message').style.display = 'none';
+    if (navigator.cookieEnabled) {
+        document.getElementById('cookies_disabled_message').style.display = 'none';
+    }
+</script>
+
 {% block content %}{% endblock %}
 
 <!--<div class="block block-bordered-lg text-center">-->
