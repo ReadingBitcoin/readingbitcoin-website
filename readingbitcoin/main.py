@@ -48,5 +48,16 @@ def article(year, month, file_name, language=None):
                            language_code=language_code)
 
 
+@app.route('/about/', defaults={'language': None})
+@app.route('/about/<language>/')
+def about(language=None):
+    if language is None:
+        language_code = None
+    else:
+        language_code = language_map[language]
+    return render_template('about.html',
+                           language_code=language_code)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=7808)
