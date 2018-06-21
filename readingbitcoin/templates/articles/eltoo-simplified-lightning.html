@@ -31,9 +31,9 @@ to create this blockchain tailor-made for layer 2 protocols are already
 fulfilled by the Bitcoin blockchain.</p>
 
 <p>
-    <img class="center" src="{{ url_for('static', filename='eltoo-simplified-lightning-img1.png') }}">
+    <img class="center" src="{{ url_for('static', filename='eltoo-simplified-lightning-img1.png') }}"><br><br>
     <i>Figure 1: An example execution of the eltoo protocol, showing how intermediate states can be skipped by rebinding a later update transaction to an earlier one, or directly to the setup transaction. Only the last settlement transaction can ever be confirmed on the blockchain.</i>
-</p>
+</p><br>
 
 <p>In eltoo every state is represented as a set of two transactions: an update
 transaction that spends the contract’s output and creates a new output, and a
@@ -70,10 +70,11 @@ constructs such as HTLCs to the state.</p>
 mechanism, so are we trying to replace Lightning with this proposal? Absolutely
 not!</p>
 
+<br>
 <p>
-    <img class="center" src="{{ url_for('static', filename='eltoo-simplified-lightning-img2.png') }}">
+    <img class="center" src="{{ url_for('static', filename='eltoo-simplified-lightning-img2.png') }}"><br><br>
     <i>Figure 2: A diagram of the various sub-protocols that are part of the Lightning Stack.</i>
-</p>
+</p><br>
 
 <p>The Lightning Network specification is no longer the specification of a single
 protocol, but rather a full stack of protocols, each fulfilling its own

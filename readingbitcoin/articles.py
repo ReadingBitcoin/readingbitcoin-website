@@ -10,7 +10,7 @@ articles_data = [
         'author': 'Christian Decker, Ph.D.',
         'source': 'https://blockstream.com/2018/04/30/eltoo-next-lightning.html',
         'source_name': 'Blockstream',
-        'preview': "...eltoo simply enforces the latest agreed-upon state of the off-chain contract. This has important implications for the applicability and safety..."
+        'preview': "...eltoo simply enforces the latest agreed-upon state of the off-chain contract. This has important implications for the applicability and safety of the protocols that are built on top of the update mechanism."
     },
     {
         'id': 2,
