@@ -1,5 +1,18 @@
 articles_data = [
     {
+        'id': 3,
+        'day': 30,
+        'month': 4,
+        'year': 2018,
+        'image_name': 'cdecker.png',
+        'file_name': 'eltoo-simplified-lightning',
+        'title': 'eltoo: A Simplified Update Mechanism for Lightning and Off-Chain Contracts',
+        'author': 'Christian Decker, Ph.D.',
+        'source': 'https://blockstream.com/2018/04/30/eltoo-next-lightning.html',
+        'source_name': 'Blockstream',
+        'preview': "...eltoo simply enforces the latest agreed-upon state of the off-chain contract. This has important implications for the applicability and safety..."
+    },
+    {
         'id': 2,
         'day': 20,
         'month': 11,
