@@ -77,6 +77,17 @@ img.center {
     }
 }
 
+/* blockquote overrides */
+blockquote.pull-quote p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+blockquote.pull-quote cite {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 /* footer block */
 .app-block-footer {
     background-color: rgb(27, 28, 29);
