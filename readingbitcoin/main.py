@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
-from readingbitcoin.articles import articles_data
-from readingbitcoin.constants import language_map
+from articles import articles_data
+from constants import language_map
 
 app = Flask(__name__)
 
@@ -14,6 +14,7 @@ def index(language=None):
     else:
         language_code = language_map[language]
     return render_template('index.html',
+                           articles_data=articles_data,
                            language_code=language_code)
 
 

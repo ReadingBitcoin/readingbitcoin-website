@@ -6,6 +6,7 @@
 
 .block {
     overflow: hidden;
+    padding: 30px 30px;
 }
 
 img.center {

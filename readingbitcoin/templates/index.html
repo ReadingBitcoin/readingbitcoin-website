@@ -3,18 +3,18 @@
 {% block content %}
 <div class="block app-block-intro">
     <div class="container text-xs-center">
-        <p class="lead mb-5 pb-5"><strong>Reading Bitcoin</strong>
+        <p class="lead"><strong>Reading Bitcoin</strong>
             furthers the world’s understanding of Bitcoin through high-quality, accessible, localized content.</p>
-        <img class="img-fluid" src="{{ url_for('static', filename='logos.png') }}">
+          <a href="#articles"><img class="img-fluid" src="{{ url_for('static', filename='logos.png') }}"></a>
     </div>
 </div>
 
-<div class="block block-bordered-lg">
+<div class="block">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <ul class="featured-list">
-                    <li class="mb-5">
+                    <li>
                         <div class="featured-list-icon text-primary">
                             <span class="icon icon-graduation-cap"></span>
                         </div>
@@ -45,10 +45,35 @@
         </div>
     </div>
 </div>
+
+{% for article in articles_data|sort(attribute='id', reverse=True) %}
+<div class="block block-bordered-lg" id="articles">
+  <div class="container">
+    <br>
+    <blockquote class="pull-quote">
+        <img class="rounded-circle" src="{{ url_for('static', filename=article['image_name']) }}">
+        <p>
+            <a href="{{ url_for('article', file_name=article['file_name'],
+                                           month=article['month'],
+                                           year=article['year']) }}">
+            "{{article['preview']}}"
+            </a>
+        </p>
+        <cite>
+            <a href="{{ url_for('article', file_name=article['file_name'],
+                                           month=article['month'],
+                                           year=article['year']) }}">
+                <strong>{{article['title']}}</strong></a> by {{article['author']}} on {{article['year']}}/{{article['month']}}/{{article['day']}}
+        </cite>
+    </blockquote>
+  </div>
+</div>
+{% endfor %}
+
 <div class="block block-bordered-lg text-center">
     <div class="container-fluid">
         <p class="lead mb-4">
-            <a class="nav-link" href="{{url_for('about')}}"><h1>About</h1></a>
+            <a class="nav-link" href="{{url_for('about')}}"><h1>About Reading Bitcoin</h1></a>
         </p>
     </div>
 </div>
